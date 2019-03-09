@@ -1,0 +1,17 @@
+---
+- name: Adds user 
+  hosts: all
+  become: yes
+  become_method: sudo
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - name: Add users
+      when: ansible_os_family == "RedHat"
+      user: 
+        name: "{{ item }}"
+      with_items:
+        -bob
+        -ben
+        -sam
+        -katy
